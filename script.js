@@ -1,11 +1,19 @@
 const f = () => {
-    const trends = document.querySelector('*[aria-label="タイムライン: トレンド"]')
-    const trendsFeed = document.querySelector('*[aria-label="タイムライン: 話題を検索"]')
-    const searchButton = document.querySelector('*[aria-label="調べたいものを検索"')
+    const ariaLabels = [
+        'おすすめユーザー',
+        'タイムライン: ',
+        'タイムライン: トレンド',
+        'タイムライン: 話題を検索',
+        '調べたいものを検索'
+    ]
 
-    trends?.parentElement.removeChild(trends)
-    trendsFeed?.parentElement.removeChild(trendsFeed)
-    searchButton?.parentElement.removeChild(searchButton)
+    const queries = ariaLabels.map(label => `*[aria-label="${label}"]`)
+    for (const query of queries) {
+        const element = document.querySelector(query)
+        element?.parentElement.removeChild(element)
+
+        if (element) console.log(element)
+    }
 
     requestAnimationFrame(f)
 }
